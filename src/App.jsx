@@ -4,6 +4,8 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Navigation from './Customer/component/Navigation/Navigation'
 import HomePage from './Customer/pages/HomePage/HomePage'
+import Product from './Product/product'
+import Footer from './Customer/component/Footer/Footer'
 
 function App() {
 
@@ -12,7 +14,11 @@ function App() {
       <div className="min-h-screen w-screen bg-gray-200">
         <Navigation />
         <div>
-          <HomePage/>
+          {/* <HomePage/> */}
+          <Product/>
+        </div>
+        <div>
+            <Footer/>
         </div>
       </div>
 

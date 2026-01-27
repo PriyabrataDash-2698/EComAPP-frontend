@@ -4,7 +4,6 @@ import HomeSectioncaraousel from '../../component/HomeSectionCaraousel/HomeSecti
 import { mens_kurta } from '../../../Data/kurta';
 import { mensShoesPage1 } from '../../../Data/shoes';
 import { sareePage1 } from '../../../Data/sharee';
-import Footer from '../../component/Footer/Footer';
 export const HomePage = () => {
   return (
     <div>
@@ -16,7 +15,6 @@ export const HomePage = () => {
 
         </div>
         <div>
-          <Footer/>
         </div>
     </div>
   )
