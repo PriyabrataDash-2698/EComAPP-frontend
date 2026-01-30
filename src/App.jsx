@@ -4,8 +4,9 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Navigation from './Customer/component/Navigation/Navigation'
 import HomePage from './Customer/pages/HomePage/HomePage'
-import Product from './Product/product'
+import Product from './Product/Product'
 import Footer from './Customer/component/Footer/Footer'
+import ProductDetails from './productDetails/ProductDetails'
 
 function App() {
 
@@ -15,7 +16,8 @@ function App() {
         <Navigation />
         <div>
           {/* <HomePage/> */}
-          <Product/>
+          {/* <Product/> */}
+          <ProductDetails/>
         </div>
         <div>
             <Footer/>
