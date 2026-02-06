@@ -8,18 +8,20 @@ import Product from './Product/Product'
 import Footer from './Customer/component/Footer/Footer'
 import ProductDetails from './productDetails/ProductDetails'
 import Cart from './Customer/component/cart/Cart'
+import Checkout from './Customer/component/checkout/Checkout'
 
 function App() {
 
   return (
     <>
-      <div className="min-h-screen w-screen bg-white-200">
+      <div className="min-h-screen w-screen">
         <Navigation />
         <div>
           {/* <HomePage/> */}
           {/* <Product/> */}
           {/* <ProductDetails/> */}
-          <Cart/>
+          {/* <Cart/> */}
+          <Checkout/>
         </div>
         <div>
             <Footer/>
