@@ -9,6 +9,7 @@ import Footer from './Customer/component/Footer/Footer'
 import ProductDetails from './productDetails/ProductDetails'
 import Cart from './Customer/component/cart/Cart'
 import Checkout from './Customer/component/checkout/Checkout'
+import Order from './Customer/component/order/Order'
 
 function App() {
 
@@ -21,7 +22,8 @@ function App() {
           {/* <Product/> */}
           {/* <ProductDetails/> */}
           {/* <Cart/> */}
-          <Checkout/>
+          {/* <Checkout/> */}
+          <Order/>
         </div>
         <div>
             <Footer/>
