@@ -11,9 +11,9 @@ const CustomerRoutes = () => {
     <div>
       <div>
         <Navigation />
-      </div>
+      
         <Routes>
-            <Route path='/' element={<HomePage/>}></Route>
+            <Route path='' element={<HomePage/>}></Route>
             <Route path='/cart' element={<Cart/>}></Route>
             <Route path='/:lavelOne/:lavelTwo/:lavelThree' element={<Product/> }></Route>
 
@@ -24,6 +24,7 @@ const CustomerRoutes = () => {
           {/* <Order/> */}
           {/* <OrderDetail/>   */}
         </Routes>
+        </div>
         <div>
           <Footer/>
         </div>
