@@ -11,7 +11,7 @@ const orderStatus=[
 ]
 const Order = () => {
   return (
-    <div className='text-black px-5 lg:px-20'>
+    <div className='text-black px-5 lg:px-20 bg-white'>
         <Grid container spacing={2}>
             <Grid item xs={2.5}>
                 <div className='h-auto shadow-lg bg-white p-5 sticky top-5'>
@@ -30,8 +30,8 @@ const Order = () => {
                     </div>
                 </div>
             </Grid>
-            <Grid item xs={9}  className="w-[1134px]">
-                  <div className='space-y-5'>
+            <Grid item xs={9}>
+                  <div className='space-y-5 w-[1100px]'>
                       {[1, 1, 1, 1].map((item) => (
                           <OrderCard />
                       ))}

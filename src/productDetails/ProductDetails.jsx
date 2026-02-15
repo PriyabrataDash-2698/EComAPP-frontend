@@ -12,6 +12,7 @@ import { Box, Button, Grid, LinearProgress, Rating } from '@mui/material'
 import Productreviewcard from './Productreviewcard'
 import { mens_kurta } from '../Data/kurta'
 import Homesectioncard from '../Customer/component/HomeSectioncard/Homesectioncard'
+import { useNavigate } from 'react-router-dom'
 
 const product = {
   name: 'Basic Tee 6-Pack',
@@ -62,12 +63,16 @@ const product = {
     'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
 }
 const reviews = { href: '#', average: 4, totalCount: 117 }
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function ProductDetails() {
+  const navigate = useNavigate();
+
+  const handleAddToCart = ()=>{
+    navigate("/cart")
+  }
   return (
     <div className="bg-white lg:px-20 text-black">
       <div className="pt-6">
@@ -188,7 +193,7 @@ export default function ProductDetails() {
                   </fieldset>
                 </div>
 
-                <Button variant='contained' sx={{ px: '1rem', py: '1rem', bgcolor: '#9155fd' }} color='secondary'>
+                <Button onClick={handleAddToCart} variant='contained' sx={{ px: '1rem', py: '1rem', bgcolor: '#9155fd' }} color='secondary'>
                   Add to cart
                 </Button>
               </form>

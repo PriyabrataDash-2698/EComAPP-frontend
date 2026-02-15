@@ -6,7 +6,7 @@ import { deepPurple } from '@mui/material/colors'
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 const OrderDetail = () => {
   return (
-    <div className='px-5 lg:px-20'>
+    <div className='px-5 lg:px-20 bg-white text-black'>
         <div>
             <h6 className='font-semibold text-xl py-10'>Delivery Address</h6>
             <Addresscard/>

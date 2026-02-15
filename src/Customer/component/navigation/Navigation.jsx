@@ -44,6 +44,9 @@ export default function Navigation() {
     navigate(`/${category.id}/${section.id}/${item.id}`);
     close();
   };
+  const handleOrderDetail=()=>{
+    navigate('/account/order')
+  }
 
 
 
@@ -411,7 +414,10 @@ export default function Navigation() {
                         }}
                       >
                         <MenuItem >
-                         My Profile
+                        Profile
+                        </MenuItem>
+                        <MenuItem onClick={handleOrderDetail}>
+                         My Order
                         </MenuItem>
                         <MenuItem >Logout</MenuItem>
                       </Menu>

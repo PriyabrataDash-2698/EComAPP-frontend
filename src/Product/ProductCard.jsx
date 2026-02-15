@@ -1,16 +1,16 @@
 import React from 'react'
-import  '/Users/priyabratadash/EcomApp/src/Product/ProductCard.css'
+import '/Users/priyabratadash/EcomApp/src/Product/ProductCard.css'
+import { useNavigate } from 'react-router-dom'
 
 
-const ProductCard = ({Product}) => {
-  console.log(Product);
-  
+const ProductCard = ({ Product }) => {
+  const navigate = useNavigate();
   return (
-    <div className='productCard w-[15rem] m-3 transition-all cursor-pointer'>
-     <div className='h-[20rem]'>
-      <img className='h-full w-full object-cover object-left-top' 
-      src={Product.imageUrl}
-      alt="" />
+    <div onClick={()=>navigate(`/product/${5}`)} className='productCard w-[15rem] m-3 transition-all cursor-pointer'>
+      <div className='h-[20rem]'>
+        <img className='h-full w-full object-cover object-left-top'
+          src={Product.imageUrl}
+          alt="" />
       </div>
       <div className='textPart bg-white p-3 text-black'>
         <div>
