@@ -10,27 +10,18 @@ import ProductDetails from './productDetails/ProductDetails'
 import Cart from './Customer/component/cart/Cart'
 import Checkout from './Customer/component/checkout/Checkout'
 import Order from './Customer/component/order/Order'
+import OrderDetail from './Customer/component/order/OrderDetail'
+import { Route, Routes } from 'react-router-dom'
+import CustomerRoutes from './Customer/Routers/CustomerRoutes'
 
 function App() {
 
   return (
-    <>
-      <div className="min-h-screen w-screen">
-        <Navigation />
-        <div>
-          {/* <HomePage/> */}
-          {/* <Product/> */}
-          {/* <ProductDetails/> */}
-          {/* <Cart/> */}
-          {/* <Checkout/> */}
-          <Order/>
-        </div>
-        <div>
-            <Footer/>
-        </div>
-      </div>
-
-    </>
+    <div>
+    <Routes>
+      <Route path='/*' element={<CustomerRoutes/>}></Route>
+    </Routes>
+    </div>
   )
 }
 

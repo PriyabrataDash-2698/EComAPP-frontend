@@ -3,30 +3,44 @@ import React from 'react'
 import AdjustIcon from '@mui/icons-material/Adjust';
 const OrderCard = () => {
   return (
-    <div className='bg-white text-black'>
-        <Grid container spacing={2} sx={{justifyContent:'space-between'}}>
-            <Grid item xs={6}>
-                <div className='flex cursor-pointer'>
-                    <img className='w-[5rem] h-[5rem] object-cover object-top' src="https://rukminim2.flixcart.com/image/240/240/xif0q/monitor/i/q/k/-original-imahbzhcdvc6gkhu.jpeg?q=60" alt="" />
-                    <div className='ml-5 space-y-2'>
-                        <p className='mb-2 '>Tv Good Tv</p>
-                        <p className='opacity-50 text-xs font-semibold'>Electronics</p>
-                        <p className='opacity-50 text-xs font-semibold'>color: Black</p>
-                    </div>
-                </div>
-            </Grid>
-        </Grid>
-        <Grid item xs={2}>
-            <p>Rs.19999</p>
-        </Grid>
-        <Grid item xs={4}>
-            <p>
-                <span>Delivered on march 03</span>
-                
-                <span>Expected delivery On 08 march</span> 
-            </p>
-        </Grid>
-    </div>
+   <div className="bg-white p-4 shadow-lg rounded-md mb-4 hover:shadow-2xl">
+  <Grid container alignItems="center" sx={{justifyContent:'space-between'}}>
+
+    {/* LEFT - Product */}
+    <Grid item xs={6}>
+      <div className="flex items-center gap-4">
+        <img
+          src="https://rukminim2.flixcart.com/image/240/240/xif0q/monitor/i/q/k/-original-imahbzhcdvc6gkhu.jpeg?q=60"
+          alt=""
+          className="w-20 h-20 object-cover"
+        />
+        <div>
+          <p className="font-medium text-base">Tv Good Tv</p>
+          <p className="text-sm text-gray-500">Electronics</p>
+          <p className="text-sm text-gray-500">Color: Black</p>
+        </div>
+      </div>
+    </Grid>
+
+    {/* CENTER - Price */}
+    <Grid item xs={2}>
+      <p className="font-semibold text-base">₹19,999</p>
+    </Grid>
+
+    {/* RIGHT - Delivery */}
+    <Grid item xs={4}>
+      <div>
+        <p className="font-medium text-green-600">
+          Expected Delivery On Mar 03
+        </p>
+        <p className="text-sm text-gray-500">
+          Your item has been delivered
+        </p>
+      </div>
+    </Grid>
+
+  </Grid>
+</div>
   )
 }
 
