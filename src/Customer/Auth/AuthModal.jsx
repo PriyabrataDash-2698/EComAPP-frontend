@@ -3,6 +3,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import React from 'react'
 import Registerform from './Registerform';
+import { useLocation } from 'react-router-dom';
+import Loginform from './loginform';
 
 
 const style = {
@@ -18,6 +20,7 @@ const style = {
 };
 
 export const AuthModal = ({handleClose,open}) => {
+    const location = useLocation();
     return (
         <div >
             <Modal
@@ -27,8 +30,8 @@ export const AuthModal = ({handleClose,open}) => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style} className='text-black-600'>
+                    {location.pathname == '/login' ? <Loginform/> : <Registerform/>}
                     
-                    <Registerform/>
                 </Box>
             </Modal>
         </div>

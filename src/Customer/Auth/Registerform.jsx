@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Grid,TextField } from '@mui/material'
+import { useNavigate } from 'react-router-dom';
 const Registerform = () => {
     const handleSubmit=(event)=>{
         event.preventDefault();
@@ -15,6 +16,7 @@ const Registerform = () => {
         console.log(userData);
         
     }
+    const navigate = useNavigate()
   return (
     <div>
         <form onSubmit={handleSubmit}>
@@ -68,6 +70,12 @@ const Registerform = () => {
                 </Grid>
             </Grid>
         </form>
+        <div className='flex justify-center flex-col items-center'>
+          <div className='py-3 flex items-center'>
+            <p>If you have already Account ?</p>
+            <Button onClick={()=>navigate("/login")} className='ml-5' size='small'>Login</Button>
+          </div>
+        </div>
     </div>
   )
 }
