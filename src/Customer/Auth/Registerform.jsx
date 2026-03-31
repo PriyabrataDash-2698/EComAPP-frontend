@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Grid,TextField } from '@mui/material'
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 const Registerform = () => {
     const handleSubmit=(event)=>{
         event.preventDefault();
@@ -16,7 +17,8 @@ const Registerform = () => {
         console.log(userData);
         
     }
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
   return (
     <div>
         <form onSubmit={handleSubmit}>
