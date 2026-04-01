@@ -1,10 +1,10 @@
 import axios from "axios"
-import { API_BASE_URL } from "../../config/apiConfig"
+
 import { GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS } from "./ActionType";
 
 
 const token = localStorage.getItem("jwt");
-
+const API_BASE_URL = "http://localhost:5454"
 const registerRequest = () => ({type:REGISTER_REQUEST});
 const registerSuccess = (user) => ({type:REGISTER_SUCCESS,payload:user});
 const registerFailure = (error) => ({type:REGISTER_FAILURE,payload:error});
@@ -18,6 +18,8 @@ export const regsiter = (userData)=> async (dispatch)=>{
         if(user.jwt){
             localStorage.setItem("jwt",user.jwt)
         }
+        console.log("user ",user);
+        
         dispatch(registerSuccess(user.jwt))
     } catch (error) {
         dispatch(registerFailure(error.message))
