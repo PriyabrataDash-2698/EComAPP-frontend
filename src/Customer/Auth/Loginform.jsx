@@ -1,21 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Grid,TextField } from '@mui/material'
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getUser, login } from '../../state/Auth/Action';
 
 
 const Loginform = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleSubmit=(event)=>{
         event.preventDefault();
 
         const data=new FormData(event.currentTarget);
 
         const userData = {
-            firstName:data.get("firstName"),
-            lastName:data.get("lastName"),
             email:data.get("email"),
             password:data.get("password")
         }
+        dispatch(login(userData))
         console.log(userData);
         
     }
@@ -24,7 +26,6 @@ const Loginform = () => {
     <div>
       <form onSubmit={handleSubmit}>
             <Grid container spacing={3}>
-               
                   <Grid item xs={12} className='w-full'>
                     <TextField
                     required

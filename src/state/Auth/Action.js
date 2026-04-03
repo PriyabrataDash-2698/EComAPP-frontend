@@ -51,12 +51,12 @@ const getUserRequest = () => ({type:GET_USER_REQUEST});
 const getUserSuccess = (user) => ({type:GET_USER_SUCCESS,payload:user});
 const getUserFailure = (error) => ({type:GET_USER_FAILURE,payload:error});
 
-export const getUser = ()=> async (dispatch)=>{
+export const getUser = (jwt)=> async (dispatch)=>{
     dispatch(getUserRequest());
     try {
         const response = axios.get(`${API_BASE_URL}/api/users/profile`,{
             headers:{
-                "Authorization":`Bearer ${token}`
+                "Authorization":`Bearer ${jwt}`
             }
         } );
         
@@ -70,5 +70,6 @@ export const getUser = ()=> async (dispatch)=>{
 
 //for LOGOUT
 export const logOut=()=>(dispatch)=>{
-    dispatch({type:LOGOUT,payload:null})
+    dispatch({type:LOGOUT,payload:null});
+    localStorage.clear();
 }

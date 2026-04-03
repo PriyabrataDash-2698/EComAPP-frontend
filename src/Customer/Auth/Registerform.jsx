@@ -11,7 +11,7 @@ const Registerform = () => {
 
   useEffect(()=>{
     if(jwt){
-      dispatch(getUser())
+      dispatch(getUser(jwt))
     }
   },[jwt,auth.jwt])
 
