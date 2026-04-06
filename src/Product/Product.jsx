@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Dialog,
   DialogBackdrop,
@@ -20,7 +20,9 @@ import ProductCard from './ProductCard'
 import { filters, singleFilter } from '../Data/filter'
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
 import FilterListAltIcon from '@mui/icons-material/FilterListAlt';
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { findProducts } from '../state/Product/Action'
 
 const sortOptions = [
   { name: 'Price: Low to High', href: '#', current: false },
@@ -35,6 +37,8 @@ export default function Product() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const location = useLocation();
   const navigate =  useNavigate();
+  const param = useParams();
+  const dispatch = useDispatch();
 
   //to read from queryparameter these 2 lines are responsibe
   const decodedQueryString = decodeURIComponent(location.search);
@@ -47,6 +51,34 @@ export default function Product() {
   const sortValue = searchParams.get("sort");
   const pageValue = searchParams.get("page") || 1;
   const stock = searchParams.get("stock");
+
+  useEffect(() => {
+    const [minPrice, maxPrice] = priceValue === null ? [0, 10000] : priceValue.split("-").map(Number);
+
+    const data = {
+      category: param.lavelThree,
+      colors: colorValue || [],
+      sizes: sizeValue || [],
+      minPrice ,
+      maxPrice,
+      minDiscount:discount || 0,
+      sort:sortValue || "price_low",
+      pageNumber : pageNumber-1,
+      pageSize:10,
+      stock:stock
+    }
+    dispatch(findProducts(data))
+  },
+
+    [param.lavelThree,
+      colorValue,
+      sizeValue,
+      priceValue,
+      discount,
+      sortValue,
+      pageValue,
+      stock
+    ])
 
 
   const handlecheckBoxFilter=(value,sectionId)=>{

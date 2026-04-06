@@ -1,4 +1,5 @@
-const { default: axios } = require("axios");
+// const { default: axios } = require("axios");
+import axios from "axios";
 
 const API_BASE_URL = "http://localhost:5454";
 const jwt = localStorage.getItem("jwt");
