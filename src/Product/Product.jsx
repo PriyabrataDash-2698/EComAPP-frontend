@@ -36,11 +36,18 @@ export default function Product() {
   const location = useLocation();
   const navigate =  useNavigate();
 
+  //to read from queryparameter these 2 lines are responsibe
   const decodedQueryString = decodeURIComponent(location.search);
   const searchParams = new URLSearchParams(decodedQueryString);
+
   const colorValue = searchParams.get("color");
   const sizeValue = searchParams.get("size");
   const priceValue = searchParams.get("price");
+  const discount = searchParams.get("discount");
+  const sortValue = searchParams.get("sort");
+  const pageValue = searchParams.get("page") || 1;
+  const stock = searchParams.get("stock");
+
 
   const handlecheckBoxFilter=(value,sectionId)=>{
      const searchParams= new URLSearchParams(location.search);
