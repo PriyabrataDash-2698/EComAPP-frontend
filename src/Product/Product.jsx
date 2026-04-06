@@ -35,6 +35,13 @@ export default function Product() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const location = useLocation();
   const navigate =  useNavigate();
+
+  const decodedQueryString = decodeURIComponent(location.search);
+  const searchParams = new URLSearchParams(decodedQueryString);
+  const colorValue = searchParams.get("color");
+  const sizeValue = searchParams.get("size");
+  const priceValue = searchParams.get("price");
+
   const handlecheckBoxFilter=(value,sectionId)=>{
      const searchParams= new URLSearchParams(location.search);
      let filterValue = searchParams.getAll(sectionId);
