@@ -49,7 +49,7 @@ export default function Product() {
   const priceValue = searchParams.get("price");
   const discount = searchParams.get("discount");
   const sortValue = searchParams.get("sort");
-  const pageValue = searchParams.get("page") || 1;
+  const pageNumber = searchParams.get("page") || 1;
   const stock = searchParams.get("stock");
 
   useEffect(() => {
@@ -76,7 +76,7 @@ export default function Product() {
       priceValue,
       discount,
       sortValue,
-      pageValue,
+      pageNumber,
       stock
     ])
 
@@ -362,7 +362,7 @@ export default function Product() {
               {/* Product grid */}
               <div className="lg:col-span-4 w-full">
                 <div className='flex  flex-wrap justify-center bg-white py-5'>
-                {mens_kurta.map((item)=><ProductCard Product={item}/>)}
+                {mens_kurta.map((item,id)=><ProductCard key={id} Product={item}/>)}
                 </div>
               </div>
             </div>
