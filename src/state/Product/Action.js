@@ -6,19 +6,49 @@ export const findProducts = (reqData) => async (dispatch) => {
     console.log("hii from here");
     
     dispatch({type:FIND_PRODUCTS_REQUEST})
-    const { colors, sizes, minPrice, maxPrice, minDiscount, catgory, stock, sort, pageNumber, pageSize } = reqData;
+    const { colors, sizes, minPrice, maxPrice, minDiscount, category, stock, sort, pageNumber, pageSize } = reqData;
     try {
-        const {data} = await api.get(`/api/products?color=${colors}&size=${sizes}&minPrice=${minPrice}&maxPrice=${maxPrice}&minDiscount=${minDiscount}&catgory=${catgory}&stock=${stock}&sort=${sort}&pageNumber=${pageNumber}&pageSize=${pageSize}`);
+        const {data} = await api.get(`/api/products?color=${colors}&size=${sizes}&minPrice=${minPrice}&maxPrice=${maxPrice}&minDiscount=${minDiscount}&category=${category}&stock=${stock}&sort=${sort}&pageNumber=${pageNumber}&pageSize=${pageSize}`);
             console.log("find product called",data);
             dispatch({type:FIND_PRODUCTS_SUCCESS,payload:data})
             
             
     } catch (error) {
-        console.log("here from error");
+        console.log(error.response?.data || error.message);
         
         dispatch({type:FIND_PRODUCTS_FAILURE,payload:error.message})
     }
-}
+}   
+// export const findProducts = (reqData) => async (dispatch) => {
+
+//     dispatch({ type: FIND_PRODUCTS_REQUEST });
+
+//     const { colors, sizes, minPrice, maxPrice, minDiscount, catgory, stock, sort, pageNumber, pageSize } = reqData;
+
+//     try {
+//         const params = new URLSearchParams();
+
+//         colors?.forEach(c => params.append("color", c));
+//         sizes?.forEach(s => params.append("size", s));
+
+//         params.append("category", catgory);
+//         params.append("minPrice", minPrice);
+//         params.append("maxPrice", maxPrice);
+//         params.append("minDiscount", minDiscount);
+//         params.append("stock", stock);
+//         params.append("sort", sort);
+//         params.append("pageNumber", pageNumber);
+//         params.append("pageSize", pageSize);
+
+//         const { data } = await api.get(`/api/products?${params.toString()}`);
+
+//         dispatch({ type: FIND_PRODUCTS_SUCCESS, payload: data });
+
+//     } catch (error) {
+//         console.log(error.response?.data || error.message);
+//         dispatch({ type: FIND_PRODUCTS_FAILURE, payload: error.message });
+//     }
+// };
 
 export const findProductsById = (reqData) => async (dispatch) => {
     dispatch({type:FIND_PRODUCT_BY_ID_REQUEST})
