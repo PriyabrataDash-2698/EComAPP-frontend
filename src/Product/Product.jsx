@@ -18,10 +18,10 @@ import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from
 import { mens_kurta } from '../Data/kurta'
 import ProductCard from './ProductCard'
 import { filters, singleFilter } from '../Data/filter'
-import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
+import { FormControl, FormControlLabel, FormLabel, Pagination, Radio, RadioGroup } from '@mui/material'
 import FilterListAltIcon from '@mui/icons-material/FilterListAlt';
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { findProducts } from '../state/Product/Action'
 
 const sortOptions = [
@@ -39,6 +39,13 @@ export default function Product() {
   const navigate =  useNavigate();
   const param = useParams();
   const dispatch = useDispatch();
+  const {product} = useSelector(store=>store);
+  const handlePaginationChange = (event,value) => {
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set("page",value);
+    const query = searchParams.toString();
+    navigate({search:`?${query}`})
+  }
 
   //to read from queryparameter these 2 lines are responsibe
   const decodedQueryString = decodeURIComponent(location.search);
@@ -362,9 +369,14 @@ export default function Product() {
               {/* Product grid */}
               <div className="lg:col-span-4 w-full">
                 <div className='flex  flex-wrap justify-center bg-white py-5'>
-                {mens_kurta.map((item,id)=><ProductCard key={id} Product={item}/>)}
+                {product.products?.content?.map((item,id)=><ProductCard key={id} Product={item}/>)}
                 </div>
               </div>
+            </div>
+          </section>
+          <section className='w-full px-[3.6rem'>
+            <div className='px-4 py-4 flex justify-center'>
+                  <Pagination count={product?.products?.totalPages} variant="outlined" color="primary" onChange={handlePaginationChange} />
             </div>
           </section>
         </main>
