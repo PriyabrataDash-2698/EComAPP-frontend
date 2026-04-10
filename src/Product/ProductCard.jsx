@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 const ProductCard = ({ Product }) => {
   const navigate = useNavigate();
   return (
-    <div onClick={()=>navigate(`/product/${5}`)} className='productCard w-[15rem] m-3 transition-all cursor-pointer'>
+    <div onClick={()=>navigate(`/product/${Product.id}`)} className='productCard w-[15rem] m-3 transition-all cursor-pointer'>
       <div className='h-[20rem]'>
         <img className='h-full w-full object-cover object-left-top'
           src={Product.imageUrl}

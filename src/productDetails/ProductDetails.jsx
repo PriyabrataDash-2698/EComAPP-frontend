@@ -12,7 +12,11 @@ import { Box, Button, Grid, LinearProgress, Rating } from '@mui/material'
 import Productreviewcard from './Productreviewcard'
 import { mens_kurta } from '../Data/kurta'
 import Homesectioncard from '../Customer/component/HomeSectioncard/Homesectioncard'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { findProductsById } from '../state/Product/Action'
+import { store } from '../state/store'
 
 const product = {
   name: 'Basic Tee 6-Pack',
@@ -69,15 +73,23 @@ function classNames(...classes) {
 
 export default function ProductDetails() {
   const navigate = useNavigate();
-
+  const params = useParams();
+  const dispatch = useDispatch();
+  const products = useSelector(store=>store)
   const handleAddToCart = ()=>{
     navigate("/cart")
   }
+  
+  useEffect(()=>{
+    const data = {productId:params.productId}
+    dispatch(findProductsById(data))
+  },[params.productId])
   return (
     <div className="bg-white lg:px-20 text-black">
       <div className="pt-6">
         <nav aria-label="Breadcrumb">
           <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+            
             {product.breadcrumbs.map((breadcrumb) => (
               <li key={breadcrumb.id}>
                 <div className="flex items-center">
@@ -112,7 +124,7 @@ export default function ProductDetails() {
             <div className='overflow-hidden rounded-lg max-w-[30rem] max-h-[35rem]'>
               <img
                 alt={product.images[0].alt}
-                src={product.images[0].src}
+                src={products.product.imageUrl}
                 className="h-full w-full object-cover object-center"
               />
             </div>
