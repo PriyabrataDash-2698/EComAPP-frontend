@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCartItem } from '../../../state/Cart/Action'
 import { store } from '../../../state/store'
+import { cartReducer } from '../../../state/Cart/Reducer'
 
 const Cart = () => {
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ const Cart = () => {
       <div className='bg-white text-black'>
           <div className='lg:grid grid-cols-3 lg:px-16 relative'>
               <div className='col-span-2'>
-                  {[1,1,1,1].map(()=><CartItem />)}
+                  {cart.cart?.cartItems.map((item) => <CartItem item ={item}/>)}
               </div>
               <div className='sticky top-0 px-5 h-[100vh] mt-5 lg:mt-0'>
                   <div className='border'>
