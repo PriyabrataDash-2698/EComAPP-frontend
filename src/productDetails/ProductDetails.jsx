@@ -13,10 +13,11 @@ import Productreviewcard from './Productreviewcard'
 import { mens_kurta } from '../Data/kurta'
 import Homesectioncard from '../Customer/component/HomeSectioncard/Homesectioncard'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { findProductsById } from '../state/Product/Action'
 import { store } from '../state/store'
+import { addItemToCart } from '../state/Cart/Action'
 
 const product = {
   name: 'Basic Tee 6-Pack',
@@ -72,11 +73,17 @@ function classNames(...classes) {
 }
 
 export default function ProductDetails() {
+  const [selectedSize,setSelectedSize] = useState('');
   const navigate = useNavigate();
   const params = useParams();
   const dispatch = useDispatch();
-  const products = useSelector(store=>store)
+  const {products} = useSelector(store=>store)
   const handleAddToCart = ()=>{
+    
+    const data = {productId:params.productId,size:selectedSize.name};
+    console.log(data);
+    
+    dispatch(addItemToCart(data))
     navigate("/cart")
   }
   
@@ -123,8 +130,8 @@ export default function ProductDetails() {
           <div className="flex flex-col items-center">
             <div className='overflow-hidden rounded-lg max-w-[30rem] max-h-[35rem]'>
               <img
-                alt={product.images[0].alt}
-                src={products.product.imageUrl}
+                alt={products?.product?.imageUrl}
+                src={products?.product?.imageUrl}
                 className="h-full w-full object-cover object-center"
               />
             </div>
@@ -145,8 +152,8 @@ export default function ProductDetails() {
           <div className="lg:col-span-1 max-auto max-w-2xl px-4 pb-16 sm:px-6 
         lg:px-8 lg:pb-4 lg:max-w-7xl">
             <div className="lg:col-span-2 ">
-              <h1 className="text-lg lg:text-xl font-semibold text-gray-900">UniversalSoulSoft</h1>
-              <h1 className='pt-1 text-lg lg:text-xl text-gray-900 opacity-60'>Solid Women White Top </h1>
+              <h1 className="text-lg lg:text-xl font-semibold text-gray-900">{products.product?.brand}</h1>
+              <h1 className='pt-1 text-lg lg:text-xl text-gray-900 opacity-60'> {products.product?.title}</h1>
             </div>
 
             {/* Options */}
@@ -154,18 +161,18 @@ export default function ProductDetails() {
               <h2 className="sr-only">Product information</h2>
               <div className='flex space-x-5 items-center text-lg lg:text-xl text-gray-900 mt-6'>
                 <p className='font-semibold'>
-                  ₹199
+                  {products.product?.price}
                 </p>
                 <p className='line-through opacity-50 '>
-                  211
+                  {products.product?.discountPrice}
                 </p>
-                <p className='text-green-600 font-semibold'>5 % off</p>
+                <p className='text-green-600 font-semibold'>{products.product?.discountPercent} % off</p>
               </div>
               {/* Reviews */}
               <div className="mt-6">
                 <div className='flex items-center space-x-3'>
                   <Rating name="read-only" value={4.2} readOnly />
-                  <p className='opacity-50 text-sm'>5 ratings</p>
+                  <p className='opacity-50 text-sm'>{products.product?.rating } ratings</p>
                   <p className='ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500'>6 reviews</p>
                 </div>
               </div>
@@ -182,18 +189,20 @@ export default function ProductDetails() {
 
                   <fieldset aria-label="Choose a size" className="mt-4">
                     <div className="grid grid-cols-4 gap-3">
-                      {product.sizes.map((size) => (
+                      {products.product?.sizes.map((size) => (
                         <label
                           key={size.id}
                           aria-label={size.name}
+                          onClick={()=> setSelectedSize(size)}
                           className="group relative flex items-center justify-center rounded-md border border-gray-300 bg-white p-3 has-checked:border-indigo-600 has-checked:bg-indigo-600 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-indigo-600 has-disabled:border-gray-400 has-disabled:bg-gray-200 has-disabled:opacity-25"
                         >
                           <input
-                            defaultValue={size.id}
-                            defaultChecked={size === product.sizes[2]}
+                            value={size.id}
+                            // defaultChecked={size === product.sizes[2]}
+                            checked={selectedSize?.id === size.id}
                             name="size"
                             type="radio"
-                            disabled={!size.inStock}
+                            // disabled={!size.inStock}
                             className="absolute inset-0 appearance-none focus:outline-none disabled:cursor-not-allowed"
                           />
                           <span className="text-sm font-medium text-gray-900 uppercase group-has-checked:text-white">

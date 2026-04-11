@@ -39,7 +39,7 @@ export default function Product() {
   const navigate =  useNavigate();
   const param = useParams();
   const dispatch = useDispatch();
-  const {product} = useSelector(store=>store);
+  const {products} = useSelector(store=>store);
   const handlePaginationChange = (event,value) => {
     const searchParams = new URLSearchParams(location.search);
     searchParams.set("page",value);
@@ -369,14 +369,14 @@ export default function Product() {
               {/* Product grid */}
               <div className="lg:col-span-4 w-full">
                 <div className='flex  flex-wrap justify-center bg-white py-5'>
-                {product.products?.content?.map((item,id)=><ProductCard key={id} Product={item}/>)}
+                {products.products?.content?.map((item,id)=><ProductCard key={id} Product={item}/>)}
                 </div>
               </div>
             </div>
           </section>
           <section className='w-full px-[3.6rem'>
             <div className='px-4 py-4 flex justify-center'>
-                  <Pagination count={product?.products?.totalPages} variant="outlined" color="primary" onChange={handlePaginationChange} />
+                  <Pagination count={products?.products?.totalPages} variant="outlined" color="primary" onChange={handlePaginationChange} />
             </div>
           </section>
         </main>
