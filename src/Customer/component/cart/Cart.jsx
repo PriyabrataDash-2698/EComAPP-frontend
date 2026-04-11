@@ -16,7 +16,7 @@ const Cart = () => {
     }
     useEffect(()=>{
         dispatch(getCartItem())
-    },[])
+    },[cart.deleteCartItem,cart.updateCartItem])
   return (
       <div className='bg-white text-black'>
           <div className='lg:grid grid-cols-3 lg:px-16 relative'>

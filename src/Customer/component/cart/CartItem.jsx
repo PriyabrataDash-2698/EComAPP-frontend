@@ -1,9 +1,19 @@
 import { AddCircleOutline, RemoveCircleOutline } from '@mui/icons-material'
 import { Button, IconButton } from '@mui/material'
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { removeCartItem, updateItemToCart } from '../../../state/Cart/Action'
 
 const CartItem = ({item}) => {
     console.log(item)
+    const dispatch = useDispatch();
+    const handleUpdatecartItem=(number)=>{
+        const data = {data:{quantity:item.quantity+number},cartItemId:item?.id}
+        dispatch(updateItemToCart(data)) 
+    }
+    const removeCartItemData=()=>{
+        dispatch(removeCartItem(item.id))
+    }
   return (
     
     
@@ -33,17 +43,17 @@ const CartItem = ({item}) => {
           </div>
           <div className='lg:flex items-center lg:space-x-10 pt-4'>
                         <div className='flex items-center space-x-2'>
-                            <IconButton>
+                            <IconButton onClick={()=>handleUpdatecartItem(-1)} disabled={item.quantity<=1}>
                                 <RemoveCircleOutline/>
                             </IconButton>
-                            <span className='py-1 px-7 border rounded-sm'>4</span>
-                                 <IconButton sx={{color:'blue'}}>
+                            <span className='py-1 px-7 border rounded-sm'>{item.quantity}</span>
+                                 <IconButton sx={{color:'blue'}} onClick={()=>handleUpdatecartItem(1)}>
                                 <AddCircleOutline/>
                             </IconButton>
                             
                         </div>
                          <div>
-                    <Button sx={{color:'red'}}>remove</Button>
+                    <Button onClick={removeCartItemData} sx={{color:'red'}}>remove</Button>
                   </div>
                   </div>
       </div>
