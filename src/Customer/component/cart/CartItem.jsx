@@ -4,7 +4,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { removeCartItem, updateItemToCart } from '../../../state/Cart/Action'
 
-const CartItem = ({item}) => {
+const CartItem = ({item,discounte}) => {
     console.log(item)
     const dispatch = useDispatch();
     const handleUpdatecartItem=(num)=>{
@@ -30,12 +30,12 @@ const CartItem = ({item}) => {
                   <p className='opacity-70 mt-2'>Seller: Louis Vutton</p>
                   <div className='flex space-x-5 items-center text-lg lg:text-xl text-gray-900 pt-6'>
                       <p className='font-semibold'>
-                          ₹199
+                          ₹{item.discountedPrice}
                       </p>
                       <p className='line-through opacity-50 '>
-                          211
+                          ₹{item.price}
                       </p>
-                      <p className='text-green-600 font-semibold'>5 % off</p>
+                      <p className='text-green-600 font-semibold'>{Math.floor((discounte/item.price)*100)} % off</p>
                   </div>
                   
                  

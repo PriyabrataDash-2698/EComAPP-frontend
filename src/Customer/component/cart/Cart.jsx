@@ -21,7 +21,7 @@ const Cart = () => {
       <div className='bg-white text-black'>
           <div className='lg:grid grid-cols-3 lg:px-16 relative'>
               <div className='col-span-2'>
-                  {cart.cart?.cartItems.map((item) => <CartItem item ={item}/>)}
+                  {cart.cart?.cartItems.map((item) => <CartItem item ={item} discounte={cart.cart?.discounte}/>)}
               </div>
               <div className='sticky top-0 px-5 h-[100vh] mt-5 lg:mt-0'>
                   <div className='border'>
@@ -52,7 +52,7 @@ const Cart = () => {
                       <div className="space-y-3 font-semibold mb-5">
                           <div className="flex justify-between pt-3  font-bold">
                               <span>Total Amount</span>
-                              <span className='text-green-600'>{cart.cart?.totalDiscountedPrice}</span>
+                              <span className='text-green-600'>₹{cart.cart?.totalDiscountedPrice}</span>
                           </div>
                       </div>
                       <Button onClick={handleCheckout} variant='contained' className='w-full mt-5' sx={{ px: '2.5rem', py: '.7rem', bgcolor: '#9155fd' }} color='secondary'>
