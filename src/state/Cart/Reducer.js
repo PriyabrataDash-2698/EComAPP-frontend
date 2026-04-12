@@ -34,15 +34,17 @@ export const cartReducer=(state=initialState,action)=>{
         case REMOVE_CART_ITEM_SUCCESS:
             return {
                 ...state,
+                deleteCartItem: action.payload,
                 loading: false,
-                deleteCartItem: action.payload
+                
             };
 
         case UPDATE_CART_ITEM_SUCCESS:
             return {
                 ...state,
+                updateCartItem: action.payload,
                 loading: false,
-                updateCartItem: action.payload
+               
             };
 
         case REMOVE_CART_ITEM_FAILURE:
