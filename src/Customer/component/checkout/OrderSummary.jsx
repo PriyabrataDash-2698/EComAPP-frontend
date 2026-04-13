@@ -1,18 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Addresscard from '../addresscard/Addresscard'
 import CartItem from '../cart/CartItem'
 import { Button } from '@mui/material'
+import { useDispatch, useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
+import { getOrderById } from '../../../state/Order/Action'
 
 const OrderSummary = () => {
+    const dispatch = useDispatch();
+    const location = useLocation();
+    const searchparams = new URLSearchParams(location.search);
+    const orderId = searchparams.get("order_id");
+    const {order} = useSelector(store=>store);
+
+    useEffect(()=>{
+        dispatch(getOrderById(orderId))
+    },[orderId])
   return (
     <div>
       <div className='p-5 shadow-lg rounded-s-md border text-black'>
-        <Addresscard/>
+        <Addresscard address={order.order?.shippingAddress}/>
       </div>
       <div className='bg-white text-black'>
           <div className='lg:grid grid-cols-3 relative'>
               <div className='col-span-2'>
-                  {[1,1,1,1].map(()=><CartItem />)}
+                  {order.order?.orderItems.map((item)=><CartItem item={item} />)}
               </div>
               <div className='sticky top-0 px-5 h-[100vh] mt-5 lg:mt-0'>
                   <div className='border'>
@@ -25,13 +37,13 @@ const OrderSummary = () => {
                       <div className="space-y-3 font-semibold">
                           <div className="flex justify-between pt-3 text-black">
                               <span>Price</span>
-                              <span>₹4697</span>
+                              <span>₹{order.order?.totalPricef}</span>
                           </div>
                       </div>
                       <div className="space-y-3 font-semibold">
                           <div className="flex justify-between pt-3">
                               <span>Discount</span>
-                              <span className='text-green-600'>-₹349</span>
+                              <span className='text-green-600'>-₹{order.order?.discounte}</span>
                           </div>
                       </div>
                       <div className="space-y-3 font-semibold">
@@ -43,7 +55,7 @@ const OrderSummary = () => {
                       <div className="space-y-3 font-semibold mb-5">
                           <div className="flex justify-between pt-3  font-bold">
                               <span>Total Amount</span>
-                              <span className='text-green-600'>₹1278</span>
+                              <span className='text-green-600'>₹{order.order?.totalDiscountedPrice}</span>
                           </div>
                       </div>
                       <Button variant='contained' className='w-full mt-5' sx={{ px: '2.5rem', py: '.7rem', bgcolor: '#9155fd' }} color='secondary'>
