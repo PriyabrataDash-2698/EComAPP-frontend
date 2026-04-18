@@ -4,12 +4,12 @@ const Addresscard = ({address}) => {
   return (
     <div className='text-black'>
       <div className='space-y-3'>
-        <p className='font-semibold'>{address.firstName} {address.lastName}</p>
-        <p>{address.city
-},{address.zipCode}</p>
+        <p className='font-semibold'>{address?.firstName} {address?.lastName}</p>
+        <p>{address?.city
+},{address?.zipCode}</p>
         <div className='space-y-1'>
           <p className='font-semibold'>Phone Number</p>
-          <p>{address.mobile}</p>
+          <p>{address?.mobile}</p>
         </div>
       </div>
     </div>
