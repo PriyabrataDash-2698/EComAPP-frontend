@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux'
 import { removeCartItem, updateItemToCart } from '../../../state/Cart/Action'
 
 const CartItem = ({item,discounte}) => {
-    console.log(item)
     const dispatch = useDispatch();
     const handleUpdatecartItem=(num)=>{
         const data = {data:{quantity:item.quantity+num},cartItemId:item?.id}

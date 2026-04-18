@@ -7,6 +7,7 @@ import Alert from '@mui/material/Alert';
 import CheckIcon from '@mui/icons-material/Check';
 import { AlertTitle, Grid } from '@mui/material';
 import Ordertracker from '../order/Ordertracker';
+import Addresscard from '../addresscard/Addresscard';
 
 const PaymentSuccess = () => {
     const [paymentId,setPaymentId]=useState();
@@ -56,9 +57,12 @@ const PaymentSuccess = () => {
                                     <span>Size: item.size</span>
                                     </div>
                                     <p>Seller: item.product.brand</p>
-                                    <p></p>
+                                    <p> item.price</p>
                               </div>
                           </div>
+                      </Grid>
+                      <Grid item>
+                        <Addresscard address={''}/>
                       </Grid>
                   </Grid>
             )
