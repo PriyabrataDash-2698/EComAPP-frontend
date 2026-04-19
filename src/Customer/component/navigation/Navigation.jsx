@@ -37,6 +37,9 @@ export default function Navigation() {
   const handleCloseUserMenu = (event) => {
     setAnchorEl(null);
   };
+  const handleCartClick = () => {
+    navigate(`/cart/`);
+  }
 
   const handleOpen = () => {
     setOpenAuthModal(true);
@@ -471,6 +474,7 @@ export default function Navigation() {
                 <div className="ml-4 flow-root lg:ml-6">
                   <Button
                     className="group -m-2 flex items-center p-2"
+                    onClick={handleCartClick}
                   >
                     <ShoppingBagIcon
                       className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
